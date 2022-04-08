@@ -2,9 +2,8 @@
 
 namespace Bramin\CuttlyPHP\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Bramin\CuttlyPHP\CuttlyPHPServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -21,5 +20,6 @@ class TestCase extends Orchestra
     }
 
     public function getEnvironmentSetUp($app)
-    {}
+    {
+    }
 }

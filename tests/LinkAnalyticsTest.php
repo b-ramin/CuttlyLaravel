@@ -12,20 +12,20 @@ it('can get a links analytics', function () {
     $response = $cuttly->getAnalytics($url['shortLink']);
 
     expect($response)->toBeArray()->toMatchArray([
-        'status'     => 1,
-        'clicks'     => 0,
-        'date'       => Carbon::today()->toDateString(),
-        'title'      => 'Google',
-        'fullLink'   => 'https://google.com',
-        'facebook'   => 0,
-        'twitter'    => 0,
-        'pinterest'  => 0,
-        'instagram'  => 0,
+        'status' => 1,
+        'clicks' => 0,
+        'date' => Carbon::today()->toDateString(),
+        'title' => 'Google',
+        'fullLink' => 'https://google.com',
+        'facebook' => 0,
+        'twitter' => 0,
+        'pinterest' => 0,
+        'instagram' => 0,
         'googlePlus' => 0,
-        'linkedin'   => 0,
-        'rest'       => 0,
-        'devices'    => [],
-        'refs'       => [],
+        'linkedin' => 0,
+        'rest' => 0,
+        'devices' => [],
+        'refs' => [],
     ]);
 });
 

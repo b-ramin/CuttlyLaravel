@@ -4,7 +4,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/b-ramin/cuttlyphp/Check%20&%20fix%20styling?label=code%20style)](https://github.com/b-ramin/cuttlyphp/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/b-ramin/cuttlyphp.svg?style=flat-square)](https://packagist.org/packages/b-ramin/cuttlyphp)
 
-Cutt.ly is a url shortening service. This package uses Laravel's Http helper to interact with that service to create or delete shortened links.
+Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to interact with that service to create, update (WIP) and delete shortened links.
 
 ## Installation
 
@@ -25,20 +25,41 @@ This is the contents of the published config file:
 ```php
 return [
     'key' => '',
-    'custom_domain' => '',
+    'user_domain' => '0',
+    'no_title' => '1',
+    'public' => '1',
 ];
 ```
 
+Make sure to se the _key_ to your key from Cutt.ly
+
 ## Usage
 
+###Initialize the class:
 ```php
-$cuttlyPHP = new Bramin\CuttlyPHP();
-echo $cuttlyPHP->ping();
+$cuttly = new Bramin\CuttlyPHP();
 ```
 
+###Test to make sure the endpoint is working:
 ```php
-echo $cuttlyPHP->createShortLink('https://google.com');
+echo $cuttly->ping();
 ```
+
+###Create a new short link:
+```php
+$details = $cuttlyPHP->createShortLink('https://google.com', '', false, true, true);
+```
+* The first parameter should contain the URL to be shortened (required). 
+* The second parameter is for the name of the url. This is the first and only uri segment after the domain name. Passing null or an empty array will generate a random and unique string.
+* The third parameter is for whether it should use the custom domain name. This defaults to false.
+* The fourth parameter disables the title lookup to improve speed.
+* The fifth and last parameter controls whether the link is public or private.
+
+###Delete a short link:
+```php
+$cuttlyPHP->deleteShortLink('https://cutt.ly/123abc');
+```
+
 
 ## Testing
 

@@ -4,7 +4,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/b-ramin/cuttlyphp/Check%20&%20fix%20styling?label=code%20style)](https://github.com/b-ramin/cuttlyphp/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/b-ramin/cuttlyphp.svg?style=flat-square)](https://packagist.org/packages/b-ramin/cuttlyphp)
 
-Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to interact with that service to create, update (WIP) and delete shortened links.
+Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to interact with that service to create, update and delete shortened links.
 
 ## Installation
 
@@ -47,7 +47,7 @@ echo $cuttly->ping();
 
 ###Create a new short link:
 ```php
-$details = $cuttlyPHP->createShortLink('https://google.com', '', false, true, true);
+$details = $cuttlyPHP->create('https://google.com', '', false, true, true);
 ```
 * The first parameter should contain the URL to be shortened (required). 
 * The second parameter is for the name of the url. This is the first and only uri segment after the domain name. Passing null or an empty array will generate a random and unique string.
@@ -57,7 +57,7 @@ $details = $cuttlyPHP->createShortLink('https://google.com', '', false, true, tr
 
 ###Delete a short link:
 ```php
-$cuttlyPHP->deleteShortLink('https://cutt.ly/123abc');
+$cuttlyPHP->delete('https://cutt.ly/123abc');
 ```
 
 

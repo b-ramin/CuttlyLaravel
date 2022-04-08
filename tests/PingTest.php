@@ -21,9 +21,12 @@ it('can recognize a bad key', function () {
 })->throws(CuttlyException::class, '401: Invalid API key');
 
 it('can recognize a bad url', function () {
-    config(['cuttly.key' => 'bad-key']);
+    config([
+        'cuttly.key' => 'bad-key',
+        'cuttly.url' => 'https://cutt.ly/api/broken-api.php',
+    ]);
 
-    $cuttly = new Cuttly('https://cuttttt.ly');
+    $cuttly = new Cuttly();
 
     $cuttly->ping();
 })->throws(ConnectionException::class);

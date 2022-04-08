@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 class Cuttly
 {
-    public function __construct(
-        private string $baseUrl = 'https://cutt.ly'
-    ) {
-    }
-
     /**
      * @param array $query
      *
@@ -21,7 +16,7 @@ class Cuttly
     private function sendRequest(array $query = []): array
     {
         $response = Http::get(
-            $this->baseUrl . '/api/api.php',
+            config('cuttly.url'),
             array_merge(['key' => config('cuttly.key')], $query)
         );
 
@@ -35,8 +30,8 @@ class Cuttly
 
         throw match ($response->status()) {
             401 => new CuttlyException('401: Invalid API key'),
-            404 => new CuttlyException('404: URL not found'),
-            default => new CuttlyException('500: Unknown exception from Cutt.ly'),
+            404 => new ConnectionException('404: URL not found'), // Throw a ConnectionException instead of CuttlyException to match 404 from Http::get.
+            default => new CuttlyException('Unknown exception from Cutt.ly'),
         };
     }
 
@@ -61,7 +56,7 @@ class Cuttly
      * @return array
      * @throws CuttlyException|ConnectionException
      */
-    public function createShortLink(string $short, string $name = '', bool $userDomain = null, bool $noTitle = null, bool $public = null): array
+    public function create(string $short, string $name = '', bool $userDomain = null, bool $noTitle = null, bool $public = null): array
     {
         $parameters = array_merge(
             ['short' => $short],
@@ -100,16 +95,122 @@ class Cuttly
      * @throws ConnectionException
      * @throws CuttlyException
      */
-    public function deleteShortLink(string $short): bool
+    public function delete(string $short): bool
     {
         $parameters = [
-            'edit' => $short,
+            'edit'   => $short,
             'delete' => 1,
         ];
 
         $response = $this->sendRequest($parameters);
 
-        switch ($response['status']) {
+        return self::parseEditResponse($response['status']);
+    }
+
+    /**
+     * @param string $short
+     * @param string $tag
+     *
+     * @return bool
+     * @throws ConnectionException
+     * @throws CuttlyException
+     */
+    public function addTag(string $short, string $tag): bool
+    {
+        $parameters = [
+            'edit' => $short,
+            'tag'  => $tag,
+        ];
+
+        $response = $this->sendRequest($parameters);
+
+        return self::parseEditResponse($response['status']);
+    }
+
+    /**
+     * @param string $short
+     * @param string $source
+     *
+     * @return bool
+     * @throws ConnectionException
+     * @throws CuttlyException
+     */
+    public function updateSource(string $short, string $source): bool
+    {
+        $parameters = [
+            'edit'   => $short,
+            'source' => $source,
+        ];
+
+        $response = $this->sendRequest($parameters);
+
+        return self::parseEditResponse($response['status']);
+    }
+
+    /**
+     * @param string $short
+     * @param string $title
+     *
+     * @return bool
+     * @throws ConnectionException
+     * @throws CuttlyException
+     */
+    public function updateTitle(string $short, string $title): bool
+    {
+        $parameters = [
+            'edit'  => $short,
+            'title' => $title,
+        ];
+
+        $response = $this->sendRequest($parameters);
+
+        return self::parseEditResponse($response['status']);
+    }
+
+    /**
+     * @param string $short
+     * @param string|null $dateFrom
+     * @param string|null $dateTo
+     *
+     * @return array
+     * @throws ConnectionException
+     * @throws CuttlyException
+     */
+    public function getAnalytics(string $short, string $dateFrom = null, string $dateTo = null): array
+    {
+        if (isset($dateFrom) && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$dateFrom)) {
+            throw new CuttlyException('dateFrom must match YYYY-MM-DD format');
+        }
+
+        if (isset($dateTo) && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$dateTo)) {
+            throw new CuttlyException('dateTo must match YYYY-MM-DD format');
+        }
+
+        $parameters = array_merge(
+            ['stats' => $short],
+            $dateFrom ? ['date_from' => $dateFrom] : [],
+            $dateTo ? ['date_to' => $dateTo] : [],
+        );
+
+        $response = $this->sendRequest($parameters);
+
+        if ($response['stats']['status'] !== 1) {
+            // Cutt.ly docs do not provide any guidance for error handling on this call beyond "status of 1 is success".
+            throw new CuttlyException('Something went wrong.');
+        }
+
+        return $response['stats'];
+    }
+
+    /**
+     * @param int $status
+     *
+     * @return bool
+     * @throws CuttlyException
+     */
+    private static function parseEditResponse(int $status): bool
+    {
+        switch ($status) {
             case 1:
                 return true;
             case 2:

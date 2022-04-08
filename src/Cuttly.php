@@ -9,8 +9,7 @@ class Cuttly
 {
     public function __construct(
         private string $baseUrl = 'https://cutt.ly'
-    )
-    {
+    ) {
     }
 
     /**
@@ -104,7 +103,7 @@ class Cuttly
     public function deleteShortLink(string $short): bool
     {
         $parameters = [
-            'edit'   => $short,
+            'edit' => $short,
             'delete' => 1,
         ];
 

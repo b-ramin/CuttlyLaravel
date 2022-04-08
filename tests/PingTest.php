@@ -1,7 +1,7 @@
 <?php
 
-use Bramin\CuttlyPHP\CuttlyException;
 use Bramin\CuttlyPHP\Cuttly;
+use Bramin\CuttlyPHP\CuttlyException;
 use Illuminate\Http\Client\ConnectionException;
 
 it('can ping cuttly', function () {
@@ -27,4 +27,3 @@ it('can recognize a bad url', function () {
 
     $cuttly->ping();
 })->throws(ConnectionException::class);
-

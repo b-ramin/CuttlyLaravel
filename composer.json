@@ -1,6 +1,6 @@
 {
     "name": "bramin/cuttlylaravel",
-    "description": "Interact with the Cutt.ly API via Laravel's Http helper and dacade",
+    "description": "Interact with the Cutt.ly API via Laravel's Http helper and facade",
     "keywords": [
         "b-ramin",
         "bramin",

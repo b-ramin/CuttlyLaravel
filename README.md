@@ -1,8 +1,8 @@
 # Interact with the Cutt.ly API via Laravels Http Helper
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/b-ramin/cuttlylaravel.svg?style)](https://packagist.org/packages/b-ramin/cuttlylaravel)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bramin/cuttlylaravel.svg?style)](https://packagist.org/packages/bramin/cuttlylaravel)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/b-ramin/cuttlylaravel/Check%20&%20fix%20styling?label=code%20style)](https://github.com/b-ramin/cuttlylaravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/b-ramin/cuttlylaravel.svg?style)](https://packagist.org/packages/b-ramin/cuttlylaravel)
+[![Total Downloads](https://img.shields.io/packagist/dt/bramin/cuttlylaravel.svg?style)](https://packagist.org/packages/bramin/cuttlylaravel)
 
 Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to interact with that service to create, update and delete shortened links.
 

@@ -1,11 +1,9 @@
 <?php
 
-use Bramin\CuttlyPHP\Cuttly;
+use Bramin\CuttlyPHP\Facades\Cuttly;
 
 it('can delete a link', function () {
-    $cuttly = new Cuttly();
+    $url = Cuttly::create('https://google.com');
 
-    $url = $cuttly->create('https://google.com');
-
-    expect($cuttly->delete($url['shortLink']))->toBeTrue();
+    expect(Cuttly::delete($url['shortLink']))->toBeTrue();
 })->skip('Not available on free subscription');

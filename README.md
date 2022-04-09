@@ -31,38 +31,60 @@ return [
 ];
 ```
 
-Make sure to se the _key_ to your key from Cutt.ly
+Make sure to set the _key_ to your key from Cutt.ly
 
 ## Usage
 
-###Initialize the class:
+### Include the Cuttly Facade
 ```php
-$cuttly = new Bramin\CuttlyPHP();
+use Bramin\CuttlyPHP\Facades\Cuttly;
 ```
 
-###Test to make sure the endpoint is working:
+### Test the api status
 ```php
-echo $cuttly->ping();
+$success = Cuttly::ping();
 ```
 
-###Create a new short link:
+### Create a new link:
 ```php
-$details = $cuttlyPHP->create('https://google.com', '', false, true, true);
+$details = Cuttly::create('https://google.com', '', false, true, true);
 ```
-* The first parameter should contain the URL to be shortened (required). 
-* The second parameter is for the name of the url. This is the first and only uri segment after the domain name. Passing null or an empty array will generate a random and unique string.
-* The third parameter is for whether it should use the custom domain name. This defaults to false.
-* The fourth parameter disables the title lookup to improve speed.
-* The fifth and last parameter controls whether the link is public or private.
+#### Parameters:
+* `short`: The URL to be shortened (required)
+* `name`: The first and only uri segment after the domain name. Passing null or an empty array will generate a random and unique string.
+* `userDomain`: whether it should use the custom domain name instead of cutt.ly. Defaults to `false`.
+* `noTitle`: Disables the title lookup to improve speed. Defaults to `true`.
+* `public`: Whether the link is public or private. Defaults to `true`.
 
-###Delete a short link:
+### Link analytics:
 ```php
-$cuttlyPHP->delete('https://cutt.ly/123abc');
+$success = Cuttly::getAnalytics('https://cutt.ly/abcd', '2022-04-01', '2022-05-01');
+```
+#### Parameters:
+* `short`: The URL to be shortened (required)
+* `dateFrom`: Sets the start date of the period to return data for. Format: `YYYY-MM-DD`, e.g. `2021-03-02`
+* `dateTo`: Sets the end date of the period to return data for. Format: `YYYY-MM-DD`, e.g. `2021-03-02`
+
+### Add a tag to a link:
+```php
+$success = Cuttly::addTag('https://cutt.ly/abcd', 'tagname');
+```
+### Update the source of a link:
+```php
+$success = Cuttly::updateSource('https://cutt.ly/abcd', 'http://www.google.com');
 ```
 
+### Update the title of a link:
+```php
+$success = Cuttly::updateTitle('https://cutt.ly/abcd', 'Google Home Page');
+```
+
+### Delete a link:
+```php
+$success = Cuttly::delete('https://cutt.ly/abcd');
+```
 
 ## Testing
-
 ```bash
 composer test
 ```

@@ -15,7 +15,12 @@ class CuttlyPHPServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('cuttlyphp')
+            ->name('cuttly')
             ->hasConfigFile('cuttly');
+
+        $this->app->bind('cuttly', function()
+        {
+            return new Cuttly();
+        });
     }
 }

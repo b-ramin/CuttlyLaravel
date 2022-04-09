@@ -1,13 +1,11 @@
 <?php
 
-use Bramin\CuttlyPHP\Cuttly;
 use Bramin\CuttlyPHP\CuttlyException;
+use Bramin\CuttlyPHP\Facades\Cuttly;
 use Illuminate\Http\Client\ConnectionException;
 
 it('can ping cuttly', function () {
-    $cuttly = new Cuttly();
-
-    $response = $cuttly->ping();
+    $response = Cuttly::ping();
 
     expect($response)->toBeTrue();
 });
@@ -15,9 +13,7 @@ it('can ping cuttly', function () {
 it('can recognize a bad key', function () {
     config(['cuttly.key' => 'bad-key']);
 
-    $cuttly = new Cuttly();
-
-    $cuttly->ping();
+    Cuttly::ping();
 })->throws(CuttlyException::class, '401: Invalid API key');
 
 it('can recognize a bad url', function () {
@@ -26,7 +22,5 @@ it('can recognize a bad url', function () {
         'cuttly.url' => 'https://cutt.ly/api/broken-api.php',
     ]);
 
-    $cuttly = new Cuttly();
-
-    $cuttly->ping();
+    Cuttly::ping();
 })->throws(ConnectionException::class);

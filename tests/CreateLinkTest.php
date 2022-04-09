@@ -1,13 +1,11 @@
 <?php
 
-use Bramin\CuttlyPHP\Cuttly;
 use Bramin\CuttlyPHP\CuttlyException;
+use Bramin\CuttlyPHP\Facades\Cuttly;
 use Illuminate\Support\Carbon;
 
 it('can create a link', function () {
-    $cuttly = new Cuttly();
-
-    $response = $cuttly->create('https://google.com');
+    $response = Cuttly::create('https://google.com');
 
     expect($response)->toBeArray()->toMatchArray([
         'status' => 7,
@@ -18,10 +16,8 @@ it('can create a link', function () {
 });
 
 it('can create a link with a specific name', function () {
-    $cuttly = new Cuttly();
-
     $name = 'title' . rand(1000, 999999);
-    $response = $cuttly->create('https://google.com', $name);
+    $response = Cuttly::create('https://google.com', $name);
 
     expect($response)->toBeArray()->toMatchArray([
         'status' => 7,
@@ -33,9 +29,7 @@ it('can create a link with a specific name', function () {
 });
 
 it('can create a link without a title', function () {
-    $cuttly = new Cuttly();
-
-    $response = $cuttly->create('https://google.com', '', null, true);
+    $response = Cuttly::create('https://google.com', '', null, true);
 
     expect($response)->toBeArray()->toMatchArray([
         'status' => 7,
@@ -46,7 +40,5 @@ it('can create a link without a title', function () {
 });
 
 it('can recognize a bad url', function () {
-    $cuttly = new Cuttly();
-
-    $cuttly->create('not a valid url');
+    Cuttly::create('not a valid url');
 })->throws(CuttlyException::class, 'the entered link is not a link');

@@ -1,15 +1,13 @@
 <?php
 
-use Bramin\CuttlyPHP\Cuttly;
 use Bramin\CuttlyPHP\CuttlyException;
+use Bramin\CuttlyPHP\Facades\Cuttly;
 use Illuminate\Support\Carbon;
 
 it('can get a links analytics', function () {
-    $cuttly = new Cuttly();
+    $url = Cuttly::create('https://google.com');
 
-    $url = $cuttly->create('https://google.com');
-
-    $response = $cuttly->getAnalytics($url['shortLink']);
+    $response = Cuttly::getAnalytics($url['shortLink']);
 
     expect($response)->toBeArray()->toMatchArray([
         'status'     => 1,
@@ -30,13 +28,9 @@ it('can get a links analytics', function () {
 });
 
 it('throws an error when passing an invalid dateFrom', function () {
-    $cuttly = new Cuttly();
-
-    $cuttly->getAnalytics('https://cutt.ly/abcd', '1234-56-78');
+    Cuttly::getAnalytics('https://cutt.ly/abcd', '1234-56-78');
 })->throws(CuttlyException::class, 'dateFrom must match YYYY-MM-DD format');
 
 it('throws an error when passing an invalid dateTo', function () {
-    $cuttly = new Cuttly();
-
-    $cuttly->getAnalytics('https://cutt.ly/abcd', '2022-04-08', '1234-56-78');
+    Cuttly::getAnalytics('https://cutt.ly/abcd', '2022-04-08', '1234-56-78');
 })->throws(CuttlyException::class, 'dateTo must match YYYY-MM-DD format');

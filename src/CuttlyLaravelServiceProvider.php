@@ -18,8 +18,7 @@ class CuttlyLaravelServiceProvider extends PackageServiceProvider
             ->name('cuttly')
             ->hasConfigFile('cuttly');
 
-        $this->app->bind('cuttly', function()
-        {
+        $this->app->bind('cuttly', function () {
             return new Cuttly();
         });
     }

@@ -11,7 +11,7 @@ Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to 
 You can install the package via composer:
 
 ```bash
-composer require b-ramin/cuttly-laravel
+composer require bramin/cuttlylaravel
 ```
 
 You can publish the config file with:

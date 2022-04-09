@@ -98,7 +98,7 @@ class Cuttly
     public function delete(string $short): bool
     {
         $parameters = [
-            'edit'   => $short,
+            'edit' => $short,
             'delete' => 1,
         ];
 
@@ -119,7 +119,7 @@ class Cuttly
     {
         $parameters = [
             'edit' => $short,
-            'tag'  => $tag,
+            'tag' => $tag,
         ];
 
         $response = $this->sendRequest($parameters);
@@ -138,7 +138,7 @@ class Cuttly
     public function updateSource(string $short, string $source): bool
     {
         $parameters = [
-            'edit'   => $short,
+            'edit' => $short,
             'source' => $source,
         ];
 
@@ -158,7 +158,7 @@ class Cuttly
     public function updateTitle(string $short, string $title): bool
     {
         $parameters = [
-            'edit'  => $short,
+            'edit' => $short,
             'title' => $title,
         ];
 
@@ -178,11 +178,11 @@ class Cuttly
      */
     public function getAnalytics(string $short, string $dateFrom = null, string $dateTo = null): array
     {
-        if (isset($dateFrom) && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$dateFrom)) {
+        if (isset($dateFrom) && ! preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $dateFrom)) {
             throw new CuttlyException('dateFrom must match YYYY-MM-DD format');
         }
 
-        if (isset($dateTo) && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$dateTo)) {
+        if (isset($dateTo) && ! preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $dateTo)) {
             throw new CuttlyException('dateTo must match YYYY-MM-DD format');
         }
 

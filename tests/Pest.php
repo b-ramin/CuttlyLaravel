@@ -1,5 +1,5 @@
 <?php
 
-use Bramin\CuttlyPHP\Tests\TestCase;
+use Bramin\CuttlyLaravel\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

@@ -1,11 +1,11 @@
 <?php
 
-namespace Bramin\CuttlyPHP;
+namespace Bramin\CuttlyLaravel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class CuttlyPHPServiceProvider extends PackageServiceProvider
+class CuttlyLaravelServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {

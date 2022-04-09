@@ -1,7 +1,7 @@
 <?php
 
-use Bramin\CuttlyPHP\CuttlyException;
-use Bramin\CuttlyPHP\Facades\Cuttly;
+use Bramin\CuttlyLaravel\CuttlyException;
+use Bramin\CuttlyLaravel\Facades\Cuttly;
 use Illuminate\Support\Carbon;
 
 it('can get a links analytics', function () {

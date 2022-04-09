@@ -1,13 +1,18 @@
 {
-    "name": "bramin/cuttlyphp",
-    "description": "Interact with the Cutt.ly API via Laravels Http Helper",
+    "name": "bramin/cuttlylaravel",
+    "description": "Interact with the Cutt.ly API via Laravel's Http helper and dacade",
     "keywords": [
         "b-ramin",
         "bramin",
         "laravel",
-        "cuttlyphp"
+        "cuttly-laravel",
+        "cuttly",
+        "cutt.ly",
+        "url-shortener",
+        "urlshortener",
+        "url shortener"
     ],
-    "homepage": "https://github.com/b-ramin/cuttlyphp",
+    "homepage": "https://github.com/b-ramin/cuttly-laravel",
     "license": "MIT",
     "authors": [
         {
@@ -36,13 +41,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bramin\\CuttlyPHP\\": "src",
-            "Bramin\\CuttlyPHP\\Database\\Factories\\": "database/factories"
+            "Bramin\\CuttlyLaravel\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bramin\\CuttlyPHP\\Tests\\": "tests"
+            "Bramin\\CuttlyLaravel\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -60,10 +64,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bramin\\CuttlyPHP\\CuttlyPHPServiceProvider"
+                "Bramin\\CuttlyLaravel\\CuttlyLaravelServiceProvider"
             ],
             "aliases": {
-                "CuttlyPHP": "Bramin\\CuttlyPHP\\Facades\\CuttlyPHP"
+                "Cuttly": "Bramin\\CuttlyLaravel\\Facades\\CuttlyLaravel"
             }
         }
     },

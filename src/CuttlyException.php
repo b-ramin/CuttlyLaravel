@@ -1,6 +1,6 @@
 <?php
 
-namespace Bramin\CuttlyPHP;
+namespace Bramin\CuttlyLaravel;
 
 class CuttlyException extends \Exception
 {

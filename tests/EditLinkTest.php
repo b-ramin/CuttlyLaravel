@@ -1,6 +1,6 @@
 <?php
 
-use Bramin\CuttlyPHP\Facades\Cuttly;
+use Bramin\CuttlyLaravel\Facades\Cuttly;
 
 it('can add a tag to a link', function () {
     $response = Cuttly::create('https://google.com');

@@ -1,8 +1,8 @@
 # Interact with the Cutt.ly API via Laravels Http Helper
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/b-ramin/cuttlyphp.svg?style=flat-square)](https://packagist.org/packages/b-ramin/cuttlyphp)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/b-ramin/cuttlyphp/Check%20&%20fix%20styling?label=code%20style)](https://github.com/b-ramin/cuttlyphp/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/b-ramin/cuttlyphp.svg?style=flat-square)](https://packagist.org/packages/b-ramin/cuttlyphp)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/b-ramin/cuttly-laravel.svg?style=flat-square)](https://packagist.org/packages/b-ramin/cuttly-laravel)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/b-ramin/cuttly-laravel/Check%20&%20fix%20styling?label=code%20style)](https://github.com/b-ramin/cuttly-laravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/b-ramin/cuttly-laravel.svg?style=flat-square)](https://packagist.org/packages/b-ramin/cuttly-laravel)
 
 Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to interact with that service to create, update and delete shortened links.
 
@@ -11,13 +11,13 @@ Cutt.ly is a URL shortening service. This package uses Laravel's Http helper to 
 You can install the package via composer:
 
 ```bash
-composer require b-ramin/cuttlyphp
+composer require b-ramin/cuttly-laravel
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="cuttlyphp-config"
+php artisan vendor:publish --tag="cuttly-laravel-config"
 ```
 
 This is the contents of the published config file:

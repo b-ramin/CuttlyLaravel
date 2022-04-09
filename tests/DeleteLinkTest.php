@@ -1,6 +1,6 @@
 <?php
 
-use Bramin\CuttlyPHP\Facades\Cuttly;
+use Bramin\CuttlyLaravel\Facades\Cuttly;
 
 it('can delete a link', function () {
     $url = Cuttly::create('https://google.com');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bramin\CuttlyPHP\Facades;
+namespace Bramin\CuttlyLaravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Facade;
  * @method static getAnalytics(string $short, string $dateFrom = null, string $dateTo = null)
  * @method static create(string $short, string $name = '', bool $userDomain = null, bool $noTitle = null, bool $public = null)
  *
- * @see \Bramin\CuttlyPHP\Cuttly
+ * @see \Bramin\CuttlyLaravel\Cuttly
  */
 class Cuttly extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'cuttly';
     }

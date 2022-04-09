@@ -1,7 +1,7 @@
 <?php
 
-use Bramin\CuttlyPHP\CuttlyException;
-use Bramin\CuttlyPHP\Facades\Cuttly;
+use Bramin\CuttlyLaravel\CuttlyException;
+use Bramin\CuttlyLaravel\Facades\Cuttly;
 use Illuminate\Http\Client\ConnectionException;
 
 it('can ping cuttly', function () {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Bramin\CuttlyPHP\Tests;
+namespace Bramin\CuttlyLaravel\Tests;
 
-use Bramin\CuttlyPHP\CuttlyPHPServiceProvider;
+use Bramin\CuttlyLaravel\CuttlyLaravelServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -15,7 +15,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            CuttlyPHPServiceProvider::class,
+            CuttlyLaravelServiceProvider::class,
         ];
     }
 
